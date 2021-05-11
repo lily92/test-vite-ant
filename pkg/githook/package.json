@@ -1,0 +1,14 @@
+{
+  "name": "githook",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Stevie",
+  "license": "ISC",
+  "scripts": {},
+  "dependencies": {
+    "husky": "latest",
+    "lint-staged": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest"
+  }
+}
