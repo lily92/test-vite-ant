@@ -1,18 +1,19 @@
 <template>
 <a-menu :mode="mode" :theme="theme" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys" >
   <template v-for="menu in menuItems">
-    <a-menu-item :key="menu.fullPath" v-if="!menu.children?.length">
+    <a-menu-item :key="menu.fullPath" v-if="!menu.children?.length"  >
       <router-link :to="menu.fullPath">
-        <MenuOutlined /><span>{{menu.meta.title}}</span>
+        <span  class="iconfont" :class="menu.meta.icon"></span>
+        <span :class=" collapsed ?' hidden':''">{{menu.meta.title}}</span>
       </router-link>
     </a-menu-item>
     <a-sub-menu :key="menu.fullPath" v-else>
       <template v-slot:title>
-        <MenuOutlined /><span>{{menu.meta.title}}</span>
+       <span  class="iconfont" :class="menu.meta.icon " ></span><span :class="collapsed ?' hidden':''">{{menu.meta.title}}</span>
       </template>
       <a-menu-item v-for="cMenu in menu.children" :key="cMenu.fullPath">
         <router-link :to="cMenu.fullPath">
-          {{ cMenu.meta.title }}
+            <span  class="iconfont" :class="menu.meta.icon"></span> {{ cMenu.meta.title }} 
         </router-link>
       </a-menu-item>
     </a-sub-menu>
@@ -21,7 +22,6 @@
 </template>
 
 <script>
-import {MenuOutlined,MessageOutlined} from '@ant-design/icons-vue';
 import Types from 'vue-types';
 import {debounce, cloneDeep} from 'lodash-es';
 import {compareTwoStrings} from 'string-similarity';
@@ -36,8 +36,6 @@ export const BaseMenuProps = {
 
 export default {
   components: {
-    MenuOutlined,
-    MessageOutlined
   },
   props: BaseMenuProps,
   name: 'BaseMenu',
@@ -57,7 +55,7 @@ export default {
             path: i.path,
             meta: {
               title: i.title,
-              icon:'MenuOutlined'
+              icon:i.icon
             },
             children: i.children,
           }))

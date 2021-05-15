@@ -539,7 +539,7 @@
     "@vue/babel-plugin-jsx" "^1.0.3"
     hash-sum "^2.0.0"
 
-"@vitejs/plugin-vue@^1.2.1":
+"@vitejs/plugin-vue@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.2.2.tgz#b0038fc11b9099f4cd01fcbf0ee419adda417b52"
   integrity sha512-5BI2WFfs/Z0pAV4S/IQf1oH3bmFYlL5ATMBHgTt1Lf7hAnfpNd5oUAAs6hZPfk3QhvyUQgtk0rJBlabwNFcBJQ==
@@ -3140,10 +3140,10 @@ voie-pages@^0.4.0:
   dependencies:
     vue-router "^4.0.0-beta.4"
 
-vue-cropperjs@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/vue-cropperjs/-/vue-cropperjs-5.0.0.tgz#7f8cbc460737af3831b4ded634c95905198e329e"
-  integrity sha512-RhnC8O33uRZNkn74aiHZwNHnBJOXWlS4P6gsRI0lw4cZlWjKSCywZI9oSI9POlIPI6OYv30jvnHMXGch85tw7w==
+vue-cropperjs@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/vue-cropperjs/-/vue-cropperjs-4.2.0.tgz#6bce4c17478cecec56571d4060892a386307c60e"
+  integrity sha512-dvwCBtjGMiznkNIK2GFd1SQm1x+wmtWg4g4t+NrJSPj/fpHnubXxAUOIvY7lMFeR2lawRLsigCaGZrcXCzuTKA==
   dependencies:
     cropperjs "^1.5.6"
 
@@ -3158,6 +3158,11 @@ vue-eslint-parser@^7.6.0:
     espree "^6.2.1"
     esquery "^1.4.0"
     lodash "^4.17.15"
+
+vue-request@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vue-request/-/vue-request-1.1.1.tgz#735cb9476875bfd8f6e3e978cb5a1bf81ea92e4d"
+  integrity sha512-xl+SKjpY209OP2bT1Xyv/HyLjKbC69kyrgVMQEUspUsGgD4GYQW0KzDXkBIZIKJ8xzwLjWN9dOG0ZynmqBH2kA==
 
 vue-router@^4.0.0-beta.4, vue-router@^4.0.6:
   version "4.0.6"

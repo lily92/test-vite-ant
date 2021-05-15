@@ -6,7 +6,13 @@ import {
     ConfigProvider,
     Dropdown,
     Button,
-    message
+    message,
+    Table,
+    Space,
+    DatePicker,
+    Select,
+    Input
+    
 } from 'ant-design-vue';
 
 const components = [
@@ -15,7 +21,14 @@ const components = [
     Menu,
     ConfigProvider,
     Dropdown,
-    Button
+    Button,
+    Table,
+    Space,
+    DatePicker,
+    Select,
+    Input
+    
+
 ]
 
 export default {

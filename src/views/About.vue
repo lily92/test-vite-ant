@@ -3,63 +3,26 @@
     <div class="flex items-center">
       <a-button>sdfsdfsdf</a-button>
       <img class="inline-block" alt="Vue logo" src="../assets/logo.png" />
-      <!-- <ACalendar :fullscreen="false"/> -->
-      <img
-        src="https://weapp-1254144956.file.myqcloud.com//image/20210305/8d55a8d3d8fa29a2.png?imageView2/1/w/122/h/34"
-      />
+      <ACalendar :fullscreen="false"/>
     </div>
-    <h1>This is an about page</h1>
 
-    <vue-cropper
-      ref="cropper"
-      src="https://weapp-1254144956.file.myqcloud.com//image/20210305/8d55a8d3d8fa29a2.png?imageView2/1/w/122/h/34"
-    >
-    </vue-cropper>
-    裁剪后的图片
-    <img :src="cropImg" />
-    <div class="actions">
-      <a href="#" role="button" @click.prevent="zoom(0.2)"> Zoom In </a>
-      <a href="#" role="button" @click.prevent="zoom(-0.2)"> Zoom Out </a>
-      <a href="#" role="button" @click.prevent="move(-10, 0)"> Move Left </a>
-      <a href="#" role="button" @click.prevent="move(10, 0)"> Move Right </a>
-      <a href="#" role="button" @click.prevent="move(0, -10)"> Move Up </a>
-      <a href="#" role="button" @click.prevent="move(0, 10)"> Move Down </a>
-      <a href="#" role="button" @click.prevent="rotate(90)"> Rotate +90deg </a>
-      <a href="#" role="button" @click.prevent="rotate(-90)"> Rotate -90deg </a>
-      <a ref="flipX" href="#" role="button" @click.prevent="flipX"> Flip X </a>
-      <a ref="flipY" href="#" role="button" @click.prevent="flipY"> Flip Y </a>
-      <a href="#" role="button" @click.prevent="cropImage"> Crop </a>
-      <a href="#" role="button" @click.prevent="reset"> Reset </a>
-      <a href="#" role="button" @click.prevent="getData"> Get Data </a>
-      <a href="#" role="button" @click.prevent="setData"> Set Data </a>
-      <a href="#" role="button" @click.prevent="getCropBoxData">
-        Get CropBox Data
-      </a>
-      <a href="#" role="button" @click.prevent="setCropBoxData">
-        Set CropBox Data
-      </a>
-      <a href="#" role="button" @click.prevent="showFileChooser">
-        Upload Image
-      </a>
-    </div>
   </div>
 </template>
-<script lang="ts">
+<script >
 import { defineComponent } from "vue";
 import { Calendar } from "ant-design-vue";
-import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
-//  preview=".preview"
 export default defineComponent({
   components: {
     [Calendar.name]: Calendar,
-    VueCropper,
   },
   data() {
     return {
-      // imgSrc: '../../assets/logo.png',
+
       cropImg: "",
       data: null,
+      showImg:true
+
     };
   },
   methods: {

@@ -30,5 +30,35 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@font-face {
+  font-family: "iconfont"; /* Project id 2547815 */
+  src: url('//at.alicdn.com/t/font_2547815_z5nogkhciwp.woff2?t=1620961532650') format('woff2'),
+       url('//at.alicdn.com/t/font_2547815_z5nogkhciwp.woff?t=1620961532650') format('woff'),
+       url('//at.alicdn.com/t/font_2547815_z5nogkhciwp.ttf?t=1620961532650') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 14px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 5px;
+}
+
+.icon-home:before {
+  content: "\e623";
+}
+
+.icon-guanli:before {
+  content: "\e615";
+}
+
+.icon-user:before {
+  content: "\e916";
+}
+
+</style>
 
 

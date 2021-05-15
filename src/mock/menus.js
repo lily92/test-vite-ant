@@ -2,19 +2,24 @@ export default [
   {
     path: '/',
     title: '首页',
+    icon:'icon-home'
   }, {
     path: '/about',
-    title: 'About',
+    title: '关于我们',
+    icon:'icon-user'
   }, {
     path: '/users',
     title: '用户管理',
+    icon:'icon-guanli',
     children: [
       {
         path: '/',
-        title: '列表',
+        title: '用户列表',
+        icon:'icon-home',
       }, {
         path: 'add',
-        title: '添加',
+        title: '添加用户',
+        icon:'icon-home',
       },
     ],
   },
