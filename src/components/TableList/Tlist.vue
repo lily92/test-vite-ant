@@ -13,10 +13,10 @@
       <template #name="{ text }">{{ text.first }} {{ text.last }}</template>
       <template #login="{ text }">{{ text.username }}</template>
       <template #picture="{ text }">
-        <img :src="text.thumbnail" alt="" srcset="" />
+        <img :src="text.thumbnail" alt="" srcset=""  style="width:50px; height:50px"/>
       </template>
       <template #action>
-        <a-button class=" text-center" size="small">操作</a-button>
+        <a-button class=" text-center" size="small" @click="del">删除</a-button>
       </template>
     </a-table>
   </div>
@@ -25,6 +25,63 @@
 import { defineComponent, ref, watch, computed } from "vue";
 import { usePagination } from "vue-request";
 import api from "/src/utils/api";
+const columns = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    sorter: true,
+    width: "20%",
+    slots: {
+      customRender: "name",
+    },
+  },
+  {
+    title: "Picture",
+    dataIndex: "picture",
+    width: "10%",
+    slots: {
+      customRender: "picture",
+    },
+  },
+  {
+    title: "Login",
+    dataIndex: "login",
+    width: "20%",
+    slots: {
+      customRender: "login",
+    },
+  },
+
+  {
+    title: "Gender",
+    dataIndex: "gender",
+    sorter: true,
+    filters: [
+      {
+        text: "Male",
+        value: "male",
+      },
+      {
+        text: "Female",
+        value: "female",
+      },
+    ],
+    width: "20%",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+  },
+  {
+    title: "Action",
+    key: "operation",
+    fixed: "right",
+    width: "30%",
+    slots: {
+      customRender: "action",
+    },
+  },
+];
 export default defineComponent({
   props: {
     tableObj: {
@@ -36,7 +93,7 @@ export default defineComponent({
   },
   setup(props) {
     console.log(props.tableObj, "props");
-    const columns = props.tableObj.columns;
+   
     const {
       data: dataSource,
       run,
@@ -86,6 +143,8 @@ export default defineComponent({
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    del(){}
+  },
 });
 </script>
