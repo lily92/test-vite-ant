@@ -6,11 +6,13 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --format friendly --fix src/"
   },
   "dependencies": {
+    "@rollup/plugin-eslint": "^8.0.1",
     "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "^2.1.2",
     "dayjs": "^1.10.4",
     "ky": "^0.27.0",
     "lodash-es": "^4.17.21",
+
     "string-similarity": "^4.0.4",
     "vue": "^3.0.11",
     "vue-cropperjs": "4.2.0",
@@ -31,9 +33,15 @@
     "vite-plugin-voie": "^0.7.3"
   },
   "optionalDependencies": {
-    "@types/node": "latest",
-    "githook": "file:./pkg/githook",
-    "vite-eslint": "file:./pkg/vite-eslint"
+    "lodash-es": "^4.17.21",
+    "eslint-plugin-vue": "latest",
+    "eslint-formatter-friendly": "latest",
+    "eslint-config-google": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@types/node": "latest"
   },
   "husky": {
     "hooks": {

@@ -1,31 +1,25 @@
-import path from 'path'
-import { defineConfig } from 'vite'
-import voie from 'vite-plugin-voie';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import eslint from 'vite-eslint';
-
-export default defineConfig({
-  resolve: {
-    alias: {
-      '/~/': path.resolve(__dirname, 'src'),
-      'moment': 'dayjs'
-    }
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
   },
-  optimizeDeps: {
-    include: [
-        // 'moment',
-        // 'lodash-es',
-        // 'ant-design-vue/es/locale/zh_CN'
-    ]
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    sourceType: 'module',
   },
-  plugins: [
-    vue(),
-    vueJsx(),
-    eslint(),
-    voie({
-      pagesDir: 'src/views',
-      // importMode: 'sync',
-    }),
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    'google',
   ],
-});
+  rules: {
+    'no-console': process.env.VITE_USER_NODE_ENV !== 'development' ? 2 : 0,
+    'no-debugger': process.env.VITE_USER_NODE_ENV !== 'development' ? 2 : 0,
+    'max-len': 0,
+    'no-prototype-builtins': 0,
+  },
+  globals: {
+  },
+};

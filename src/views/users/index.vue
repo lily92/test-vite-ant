@@ -1,22 +1,24 @@
 <template>
   <div>
     <a-space class="flex justify-end">
-      search_key: {{ search_key }}
       <a-input
         v-model:value="search_key"
         placeholder="请输入关键字搜索"
         @change="changeInput"
       />
       <a-date-picker
-        v-model:value="date"
+        v-model:value="searchQuery.date"
         placeholder="选择日期"
         @change="changeDate"
       />
       <a-month-picker
-        v-model:value="value1"
+        v-model:value="searchQuery.month"
         placeholder="选择月份"
         @change="changeMonth"
       />
+      <a-button class="" type="primary" @click="searchBtn" value="small"
+        >搜索</a-button
+      >
       <a-button class="" type="primary" @click="getApi" value="small"
         >新增用户</a-button
       >
@@ -44,7 +46,7 @@
           />
         </template>
         <template #action>
-          <a-button class="text-center" size="small" @click="del"
+          <a-button class="text-center" size="small" @click="delItem"
             >删除</a-button
           >
         </template>
@@ -121,17 +123,18 @@ const columns = [
 export default defineComponent({
   setup() {
     const search_key = ref("");
+    const date = ref("");
+    const month = ref("");
+    const searchQuery = reactive({ search_key: search_key, date: date.month });
     const queryData = (params) => {
-      return (
-        `https://randomuser.me/api?${new URLSearchParams(params)}`
-      );
+      return `https://randomuser.me/api?${new URLSearchParams(params)}`;
     };
     const {
       data: dataSource,
       run,
       loading,
       current,
-      pageSize
+      pageSize,
     } = usePagination(queryData, {
       formatResult: (res) => res.results,
       pagination: {
@@ -144,26 +147,52 @@ export default defineComponent({
       current: current.value,
       pageSize: pageSize.value,
       showSizeChanger: true,
-      search_key:search_key
+      search_key: search_key.value,
+      date: searchQuery.date,
+      month: searchQuery.month,
     }));
 
     //filters过滤
+    let query = reactive({
+      search_key:search_key,
+      date:searchQuery.date,
+      month:searchQuery.month,
+      page:1,
+      results:pageSize.value
+    });
     const handleTableChange = (pag, filters, sorter) => {
-      console.log(pag, filters, sorter);
-      console.log(filters);
-      console.log(sorter);
-      run({
-        search_key:pag.search_key,
+      query = {
+        search_key: pag.search_key,
+        date: pag.date,
+        month: pag.month,
         results: pag.pageSize,
         page: pag?.current,
         sortField: sorter.field, //需要排序的字段
         sortOrder: sorter.order, //排序
         ...filters,
-      });
+      };
+      run({ ...query });
     };
+
+    const searchBtn = () => {
+      query.page = 1
+      run({ ...query });
+    };
+     const delItem = () => {
+       console.log('xx')
+      // query.page = 1
+      run({ ...query });
+    };
+
     const onShowSizeChange = (current, pageSize) => {
       console.log(current, pageSize);
     };
+    const changeDate = (value, dateString) => {
+      console.log("Selected Time: ", value);
+      console.log("Formatted Selected Time: ", dateString);
+      searchQuery.date = dateString;
+    };
+
 
     return {
       dataSource,
@@ -172,9 +201,13 @@ export default defineComponent({
       columns,
       handleTableChange,
       onShowSizeChange,
-      value1: ref(),
-      date: ref(),
-      search_key:  ref(),
+      search_key,
+      searchQuery,
+      changeDate,
+      queryData,
+      query,
+      searchBtn,
+      delItem
     };
   },
   mounted() {},
@@ -189,19 +222,16 @@ export default defineComponent({
         console.log(e);
       });
     },
-    changeDate(e) {
+    changeMonth(e, monthString) {
       console.log(e, "日期");
-    },
-    changeMonth(e) {
-      console.log(e, "日期");
+      console.log(monthString, "1日期");
+      this.searchQuery.month = monthString;
     },
     changeInput(e) {
       console.log(e, "关键字");
       // this.search_key = "zxx";
     },
-    del(){
-       console.log('del')
-    }
+   
   },
 });
 </script>
