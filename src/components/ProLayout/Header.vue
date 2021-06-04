@@ -48,14 +48,14 @@
 </template>
 
 <script>
-import Types from "vue-types";
-import { ref } from "vue";
-import menus from "../../mock/menus";
+import Types from 'vue-types';
+import {ref} from 'vue';
+import menus from '../../mock/menus';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   LogoutOutlined,
-} from "@ant-design/icons-vue";
+} from '@ant-design/icons-vue';
 
 export const BaseMenuProps = {
   menus: Types.array,
@@ -70,16 +70,16 @@ export default {
     // };
 
     const handleBlur = () => {
-      console.log("blur");
+      console.log('blur');
     };
 
     const handleFocus = () => {
-      console.log("focus");
+      console.log('focus');
     };
 
     const filterOption = (input, option) => {
       console.log(input, option);
-      //todo 这里判断不会写
+      // todo 这里判断不会写
       // for (let i =0 ;i<menus.length ;i++){
       //   if(menus[i].title.indexOf(input) >=0){
       //     return option.value
@@ -100,40 +100,40 @@ export default {
     menuItems() {
       const fn = (arr, parent = null) =>
         arr
-          .filter((i) => i.title && !i.hidden)
-          .map((i) => ({
-            path: i.path,
-            meta: {
-              title: i.title,
-              icon: i.icon,
-            },
-            children: i.children,
-          }))
-          .map((i) => {
-            i.fullPath = [];
-            if (parent) i.fullPath.push(parent.fullPath);
-            i.fullPath.push(i.path);
-            i.fullPath = i.fullPath.filter(Boolean).join("/").replace(`//`, "");
+            .filter((i) => i.title && !i.hidden)
+            .map((i) => ({
+              path: i.path,
+              meta: {
+                title: i.title,
+                icon: i.icon,
+              },
+              children: i.children,
+            }))
+            .map((i) => {
+              i.fullPath = [];
+              if (parent) i.fullPath.push(parent.fullPath);
+              i.fullPath.push(i.path);
+              i.fullPath = i.fullPath.filter(Boolean).join('/').replace(`//`, '');
 
-            if (i.children?.length) {
-              i.children = fn(i.children, i);
-            }
+              if (i.children?.length) {
+                i.children = fn(i.children, i);
+              }
 
-            return i;
-          });
+              return i;
+            });
 
       return fn(this.menus);
     },
-    menuAllItems(){
-      let arrays = []
-      let array = this.menuItems.filter(item => item.children  != undefined)
-      for(let  i = 0 ;i<array.length;i++ ){
-        for ( let  j = 0;j< array[i].children.length;j++){
-          arrays.push (array[i].children[j])
+    menuAllItems() {
+      const arrays = [];
+      const array = this.menuItems.filter((item) => item.children != undefined);
+      for (let i = 0; i<array.length; i++ ) {
+        for ( let j = 0; j< array[i].children.length; j++) {
+          arrays.push(array[i].children[j]);
         }
       }
-      return arrays
-    }
+      return arrays;
+    },
   },
   components: {
     MenuUnfoldOutlined,
@@ -151,14 +151,14 @@ export default {
   },
   methods: {
     onClickMenuIco() {
-      this.$emit("update:collapsed", !this.collapsed);
+      this.$emit('update:collapsed', !this.collapsed);
     },
     logout() {
-      this.$message.info("退出登录");
+      this.$message.info('退出登录');
     },
     handleChange(value) {
       // console.log(`selected ${value}`);
-      console.log(this.menuItems, "menuItems");
+      console.log(this.menuItems, 'menuItems');
       this.$router.push(value);
     },
   },

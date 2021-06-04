@@ -19,20 +19,20 @@
   </a-config-provider>
 </template>
 <script>
-import SiderMenuWrapper from "./SiderMenuWrapper.vue";
-import Header from "./Header.vue";
+import SiderMenuWrapper from './SiderMenuWrapper.vue';
+import Header from './Header.vue';
 
-import locale from "ant-design-vue/es/locale/zh_CN";
+import locale from 'ant-design-vue/es/locale/zh_CN';
 
 // import 'moment/dist/locale/zh-cn'
-import "/src/utils/dayjsInit";
+import '/src/utils/dayjsInit';
 
 export default {
   components: {
     SiderMenuWrapper,
     Header,
   },
-  props: ["menus"],
+  props: ['menus'],
   data() {
     return {
       locale,

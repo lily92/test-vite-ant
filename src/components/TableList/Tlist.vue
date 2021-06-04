@@ -22,63 +22,63 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, watch, computed } from "vue";
-import { usePagination } from "vue-request";
-import api from "/src/utils/api";
+import {defineComponent, ref, watch, computed} from 'vue';
+import {usePagination} from 'vue-request';
+import api from '/src/utils/api';
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    title: 'Name',
+    dataIndex: 'name',
     sorter: true,
-    width: "20%",
+    width: '20%',
     slots: {
-      customRender: "name",
+      customRender: 'name',
     },
   },
   {
-    title: "Picture",
-    dataIndex: "picture",
-    width: "10%",
+    title: 'Picture',
+    dataIndex: 'picture',
+    width: '10%',
     slots: {
-      customRender: "picture",
+      customRender: 'picture',
     },
   },
   {
-    title: "Login",
-    dataIndex: "login",
-    width: "20%",
+    title: 'Login',
+    dataIndex: 'login',
+    width: '20%',
     slots: {
-      customRender: "login",
+      customRender: 'login',
     },
   },
 
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: 'Gender',
+    dataIndex: 'gender',
     sorter: true,
     filters: [
       {
-        text: "Male",
-        value: "male",
+        text: 'Male',
+        value: 'male',
       },
       {
-        text: "Female",
-        value: "female",
+        text: 'Female',
+        value: 'female',
       },
     ],
-    width: "20%",
+    width: '20%',
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: 'Email',
+    dataIndex: 'email',
   },
   {
-    title: "Action",
-    key: "operation",
-    fixed: "right",
-    width: "30%",
+    title: 'Action',
+    key: 'operation',
+    fixed: 'right',
+    width: '30%',
     slots: {
-      customRender: "action",
+      customRender: 'action',
     },
   },
 ];
@@ -87,13 +87,13 @@ export default defineComponent({
     tableObj: {
       type: Object,
       default: () => {
-        columns: [], (queryData = (params) => {});
+        [], (queryData = (params) => {});
       },
     },
   },
   setup(props) {
-    console.log(props.tableObj, "props");
-   
+    console.log(props.tableObj, 'props');
+
     const {
       data: dataSource,
       run,
@@ -103,8 +103,8 @@ export default defineComponent({
     } = usePagination(props.tableObj.queryData, {
       formatResult: (res) => res.results,
       pagination: {
-        currentKey: "page",
-        pageSizeKey: "results",
+        currentKey: 'page',
+        pageSizeKey: 'results',
       },
     });
     const pagination = computed(() => ({
@@ -114,7 +114,7 @@ export default defineComponent({
       showSizeChanger: true,
     }));
 
-    //filters过滤
+    // filters过滤
     const handleTableChange = (pag, filters, sorter) => {
       console.log(pag, filters, sorter);
       console.log(filters);
@@ -122,8 +122,8 @@ export default defineComponent({
       run({
         results: pag.pageSize,
         page: pag?.current,
-        sortField: sorter.field, //需要排序的字段
-        sortOrder: sorter.order, //排序
+        sortField: sorter.field, // 需要排序的字段
+        sortOrder: sorter.order, // 排序
         ...filters,
       });
     };
@@ -144,7 +144,7 @@ export default defineComponent({
     return {};
   },
   methods: {
-    del(){}
+    del() {},
   },
 });
 </script>

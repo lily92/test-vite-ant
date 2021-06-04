@@ -1,25 +1,36 @@
-module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
+import path from 'path'
+import { defineConfig } from 'vite'
+import voie from 'vite-plugin-voie';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import eslint from '@rollup/plugin-eslint';
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
+      'moment': 'dayjs'
+    }
   },
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    sourceType: 'module',
+  optimizeDeps: {
+    include: [
+        // 'moment',
+        // 'lodash-es',
+        // 'ant-design-vue/es/locale/zh_CN'
+    ]
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    'google',
+  plugins: [
+    eslint({
+      fix: true,
+      formatter: 'friendly',
+      include: '**/*.+(vue|js|jsx|ts|tsx)',
+    }),
+    voie({
+      pagesDir: 'src/views',
+      // importMode: 'sync',
+    }),
+    vue(),
+    vueJsx(),
   ],
-  rules: {
-    'no-console': process.env.VITE_USER_NODE_ENV !== 'development' ? 2 : 0,
-    'no-debugger': process.env.VITE_USER_NODE_ENV !== 'development' ? 2 : 0,
-    'max-len': 0,
-    'no-prototype-builtins': 0,
-  },
-  globals: {
-  },
-};
+});

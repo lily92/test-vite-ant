@@ -57,75 +57,75 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, watch, computed, reactive } from "vue";
-import { usePagination } from "vue-request";
-import api from "/src/utils/api";
-import dayjs from "dayjs";
-import Tlist from "../../components/TableList/Tlist.vue";
+import {defineComponent, ref, watch, computed, reactive} from 'vue';
+import {usePagination} from 'vue-request';
+import api from '/src/utils/api';
+import dayjs from 'dayjs';
+import Tlist from '../../components/TableList/Tlist.vue';
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    title: 'Name',
+    dataIndex: 'name',
     sorter: true,
-    width: "20%",
+    width: '20%',
     slots: {
-      customRender: "name",
+      customRender: 'name',
     },
   },
   {
-    title: "Picture",
-    dataIndex: "picture",
-    width: "10%",
+    title: 'Picture',
+    dataIndex: 'picture',
+    width: '10%',
     slots: {
-      customRender: "picture",
+      customRender: 'picture',
     },
   },
   {
-    title: "Login",
-    dataIndex: "login",
-    width: "20%",
+    title: 'Login',
+    dataIndex: 'login',
+    width: '20%',
     slots: {
-      customRender: "login",
+      customRender: 'login',
     },
   },
 
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: 'Gender',
+    dataIndex: 'gender',
     sorter: true,
     filters: [
       {
-        text: "Male",
-        value: "male",
+        text: 'Male',
+        value: 'male',
       },
       {
-        text: "Female",
-        value: "female",
+        text: 'Female',
+        value: 'female',
       },
     ],
-    width: "20%",
+    width: '20%',
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: 'Email',
+    dataIndex: 'email',
   },
   {
-    title: "Action",
-    key: "operation",
-    fixed: "right",
-    width: "30%",
+    title: 'Action',
+    key: 'operation',
+    fixed: 'right',
+    width: '30%',
     slots: {
-      customRender: "action",
+      customRender: 'action',
     },
   },
 ];
 
 export default defineComponent({
   setup() {
-    const search_key = ref("");
-    const date = ref("");
-    const month = ref("");
-    const searchQuery = reactive({ search_key: search_key, date: date.month });
+    const search_key = ref('');
+    const date = ref('');
+    const month = ref('');
+    const searchQuery = reactive({search_key: search_key, date: date.value.month});
     const queryData = (params) => {
       return `https://randomuser.me/api?${new URLSearchParams(params)}`;
     };
@@ -138,8 +138,8 @@ export default defineComponent({
     } = usePagination(queryData, {
       formatResult: (res) => res.results,
       pagination: {
-        currentKey: "page",
-        pageSizeKey: "results",
+        currentKey: 'page',
+        pageSizeKey: 'results',
       },
     });
     const pagination = computed(() => ({
@@ -152,13 +152,13 @@ export default defineComponent({
       month: searchQuery.month,
     }));
 
-    //filters过滤
+    // filters过滤
     let query = reactive({
-      search_key:search_key,
-      date:searchQuery.date,
-      month:searchQuery.month,
-      page:1,
-      results:pageSize.value
+      search_key: search_key,
+      date: searchQuery.date,
+      month: searchQuery.month,
+      page: 1,
+      results: pageSize.value,
     });
     const handleTableChange = (pag, filters, sorter) => {
       query = {
@@ -167,29 +167,29 @@ export default defineComponent({
         month: pag.month,
         results: pag.pageSize,
         page: pag?.current,
-        sortField: sorter.field, //需要排序的字段
-        sortOrder: sorter.order, //排序
+        sortField: sorter.field, // 需要排序的字段
+        sortOrder: sorter.order, // 排序
         ...filters,
       };
-      run({ ...query });
+      run({...query});
     };
 
     const searchBtn = () => {
-      query.page = 1
-      run({ ...query });
+      query.page = 1;
+      run({...query});
     };
-     const delItem = () => {
-       console.log('xx')
+    const delItem = () => {
+      console.log('xx');
       // query.page = 1
-      run({ ...query });
+      run({...query});
     };
 
     const onShowSizeChange = (current, pageSize) => {
       console.log(current, pageSize);
     };
     const changeDate = (value, dateString) => {
-      console.log("Selected Time: ", value);
-      console.log("Formatted Selected Time: ", dateString);
+      console.log('Selected Time: ', value);
+      console.log('Formatted Selected Time: ', dateString);
       searchQuery.date = dateString;
     };
 
@@ -207,7 +207,7 @@ export default defineComponent({
       queryData,
       query,
       searchBtn,
-      delItem
+      delItem,
     };
   },
   mounted() {},
@@ -216,22 +216,22 @@ export default defineComponent({
   },
   methods: {
     getApi() {
-      api("/admin/appointment/getAppointmentItemById", {
-        id: "1",
+      api('/admin/appointment/getAppointmentItemById', {
+        id: '1',
       }).then((e) => {
         console.log(e);
       });
     },
     changeMonth(e, monthString) {
-      console.log(e, "日期");
-      console.log(monthString, "1日期");
+      console.log(e, '日期');
+      console.log(monthString, '1日期');
       this.searchQuery.month = monthString;
     },
     changeInput(e) {
-      console.log(e, "关键字");
+      console.log(e, '关键字');
       // this.search_key = "zxx";
     },
-   
+
   },
 });
 </script>

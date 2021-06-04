@@ -8,21 +8,21 @@
 </template>
 
 <script>
-import HelloWorld from "/src/components/HelloWorld.vue";
+import HelloWorld from '/src/components/HelloWorld.vue';
 export default {
   components: {
     HelloWorld,
   },
   data() {
     return {
-      cropImg: "",
+      cropImg: '',
       data: null,
       current: 2,
     };
   },
   methods: {
     getList() {
-      console.log("getlist");
+      console.log('getlist');
     },
   },
 };

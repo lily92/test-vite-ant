@@ -13,7 +13,7 @@
       </template>
       <a-menu-item v-for="cMenu in menu.children" :key="cMenu.fullPath">
         <router-link :to="cMenu.fullPath">
-            <span  class="iconfont" :class="menu.meta.icon"></span> {{ cMenu.meta.title }} 
+            <span  class="iconfont" :class="menu.meta.icon"></span> {{ cMenu.meta.title }}
         </router-link>
       </a-menu-item>
     </a-sub-menu>
@@ -55,7 +55,7 @@ export default {
             path: i.path,
             meta: {
               title: i.title,
-              icon:i.icon
+              icon: i.icon,
             },
             children: i.children,
           }))
